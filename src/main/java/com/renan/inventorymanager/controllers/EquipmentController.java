@@ -2,6 +2,7 @@ package com.renan.inventorymanager.controllers;
 
 import com.renan.inventorymanager.models.Equipment;
 import com.renan.inventorymanager.repositories.IEquipmentRepository;
+import com.renan.inventorymanager.repositories.IManufacturerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,11 @@ public class EquipmentController {
 
     final IEquipmentRepository equipmentRepository;
 
-    public EquipmentController(IEquipmentRepository equipmentRepository) {
+    final IManufacturerRepository manufacturerRepository;
+
+    public EquipmentController(IEquipmentRepository equipmentRepository, IManufacturerRepository manufacturerRepository) {
         this.equipmentRepository = equipmentRepository;
+        this.manufacturerRepository = manufacturerRepository;
     }
 
     @GetMapping("/{id}")
@@ -29,6 +33,8 @@ public class EquipmentController {
 
     @PostMapping
     public ResponseEntity addEquipment(@RequestBody Equipment equipment) {
+
+        manufacturerRepository.save(equipment.getManufacturer());
 
         equipment.setCreationDate(new Date());
 
