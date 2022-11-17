@@ -22,10 +22,6 @@ public class User {
 
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
-
     public User() {
 
     }
@@ -36,11 +32,10 @@ public class User {
         this.password = password;
     }
 
-    public User(Integer id, String username, String email, Set<Role> roles) {
+    public User(Integer id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.roles = roles;
     }
 
     public Integer getId() {
@@ -73,13 +68,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 }

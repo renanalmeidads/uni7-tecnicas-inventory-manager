@@ -39,8 +39,8 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers("/assets/css/**", "/assets/img/**", "/assets/js/public/**").permitAll()
-                .antMatchers("/login/public/**").permitAll()
+                .antMatchers("/assets/css/**", "/assets/img/**", "/assets/js/**").permitAll()
+                .antMatchers("/login/**", "/dashboard/**").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/").anonymous()
                 .anyRequest().authenticated();
