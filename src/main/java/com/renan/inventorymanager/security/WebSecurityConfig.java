@@ -40,7 +40,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/assets/css/**", "/assets/img/**", "/assets/js/**").permitAll()
-                .antMatchers("/login/**", "/dashboard/**").permitAll()
+                .antMatchers("/login/**", "/dashboard/**", "/equipment/**").permitAll()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/").anonymous()
                 .anyRequest().authenticated();

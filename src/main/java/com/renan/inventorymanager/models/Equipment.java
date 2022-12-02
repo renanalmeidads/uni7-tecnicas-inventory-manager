@@ -13,7 +13,15 @@ public class Equipment {
 
     private String name;
 
+    private String model;
+
+    private int year;
+
     private Date creationDate;
+
+    private Date updateDate;
+
+    private Boolean available;
 
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
@@ -45,5 +53,37 @@ public class Equipment {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }

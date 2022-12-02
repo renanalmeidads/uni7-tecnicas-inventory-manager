@@ -37,6 +37,8 @@ public class EquipmentController {
         manufacturerRepository.save(equipment.getManufacturer());
 
         equipment.setCreationDate(new Date());
+        equipment.setUpdateDate(new Date());
+        equipment.setAvailable(true);
 
         equipmentRepository.save(equipment);
 

@@ -3,6 +3,8 @@ const baseUrl = 'http://localhost:8080';
 const loginEndpoint = baseUrl + '/api/auth/signin';
 const loginPage = baseUrl + '/login/sign-in.html'
 const dashboardIndex = baseUrl + '/dashboard/index.html';
+const equipmentTableHtml = baseUrl + '/equipment/equipment_table.html';
+const equipmentRowHtml = baseUrl + '/equipment/equipment_row.html';
 const equipmentGetAll = baseUrl + '/api/equipment/all';
 
 class Usuario
