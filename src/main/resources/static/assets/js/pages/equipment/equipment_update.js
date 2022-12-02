@@ -22,6 +22,12 @@ function fillEquipmentForm(json)
     elements.namedItem('manufacturer').value = json.manufacturer.name;
     elements.namedItem('model').value = json.model;
     elements.namedItem('year').value = json.year;
+
+    document.getElementById('name').focus();
+    document.getElementById('manufacturer').focus();
+    document.getElementById('model').focus();
+    document.getElementById('year').focus();
+    document.getElementById('update-button').focus();
 }
 
 async function loadListeners(){
