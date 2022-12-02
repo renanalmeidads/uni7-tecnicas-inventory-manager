@@ -1,30 +1,9 @@
-/*window.onload = async (event) => {
-    console.log('Page dashboard is fully loaded');
-
-    await getAuthenticatedData(equipmentGetAll, async (response) => {
-
-        if(response.ok)
-        {
-            console.log('Ok');
-
-            console.log(await response.json());
-        }
-    });
-};*/
-
 async function loadEquipments() {
     let htmlEquipmentTable;
     await fetch(equipmentTableHtml)
         .then((response) => response.text())
         .then((html) => {
             htmlEquipmentTable = html;
-        });
-
-    let htmlEquipmentRow;
-    await fetch(equipmentRowHtml)
-        .then((response) => response.text())
-        .then((html) =>{
-            htmlEquipmentRow = html;
         });
 
     await fetch(equipmentGetAll)
@@ -63,8 +42,6 @@ async function loadEquipments() {
                         "<td class=\"align-middle text-center text-sm\">" +
                             "<span className=\"badge badge-sm bg-gradient-success\">" + value.available +" </span>" +
                         "</td>";
-
-                    //docEquipmentsTable.getElementById("table-equipments-body").appendChild(docEquipmentRow.body);
                 }
 
                 divTableEquipments.appendChild(docEquipmentsTable.body);
