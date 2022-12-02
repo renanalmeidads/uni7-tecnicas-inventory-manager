@@ -45,6 +45,32 @@ public class EquipmentController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
+    @PutMapping
+    public ResponseEntity updateEquipment(@RequestBody Equipment equipment)
+    {
+        if(equipment != null)
+        {
+            if(equipmentRepository.existsById(equipment.getId()))
+            {
+                Optional<Equipment> old = equipmentRepository.findById(equipment.getId());
+
+                manufacturerRepository.save(equipment.getManufacturer());
+
+                equipment.setUpdateDate(new Date());
+                equipment.setCreationDate(old.get().getCreationDate());
+                equipment.setAvailable(old.get().getAvailable());
+
+                equipmentRepository.save(equipment);
+
+                return new ResponseEntity(HttpStatus.CREATED);
+            }
+
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
     @GetMapping("/all")
     public Iterable<Equipment> getAllEquipments() {
 

@@ -9,7 +9,8 @@ async function loadListeners(){
             e.preventDefault();
 
             let manufacturer = new Manufacturer(elements.namedItem('manufacturer').value);
-            let equipment = new Equipment(elements.namedItem('name').value,
+            let equipment = new Equipment(null,
+                elements.namedItem('name').value,
                 manufacturer,
                 elements.namedItem('model').value,
                 elements.namedItem('year').value);

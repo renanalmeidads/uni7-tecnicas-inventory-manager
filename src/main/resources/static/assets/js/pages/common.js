@@ -5,6 +5,7 @@ const loginPage = baseUrl + '/login/sign-in.html'
 const dashboardIndex = baseUrl + '/dashboard/index.html';
 const equipmentTableHtml = baseUrl + '/equipment/equipment_table.html';
 const equipmentRowHtml = baseUrl + '/equipment/equipment_row.html';
+const equipmentUpdateHtml = baseUrl + '/equipment/equipment_update.html';
 const equipmentGetAll = baseUrl + '/api/equipment/all';
 const equipmentEndpoint = baseUrl + '/api/equipment';
 
@@ -18,7 +19,8 @@ class Usuario
 
 class Equipment
 {
-    constructor(name, manufacturer, model, year) {
+    constructor(id, name, manufacturer, model, year) {
+        this.id = id;
         this.name = name;
         this.manufacturer = manufacturer;
         this.model = model;
@@ -48,9 +50,9 @@ async function postData(url = '', data = {}, callback) {
     }).then((response) => callback(response));
 }
 
-async function getAuthenticatedData(url = '', callback) {
+async function putData(url = '', data = {}, callback) {
     await fetch(url, {
-        method: 'GET',
+        method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'same-origin',
@@ -58,10 +60,10 @@ async function getAuthenticatedData(url = '', callback) {
             'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer'
-    })
-    .then(response => response)
-    .then((data) => {
-        callback(data);
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data)
     });
+
+    if(callback)
+        callback();
 }

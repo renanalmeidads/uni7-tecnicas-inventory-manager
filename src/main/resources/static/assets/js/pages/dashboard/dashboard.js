@@ -18,7 +18,11 @@ async function loadEquipments() {
 
                 for(const [key, value] of Object.entries(data))
                 {
-                    tbody.insertRow().innerHTML =
+                    let newRow = tbody.insertRow();
+
+                    newRow.id = value.id;
+
+                    newRow.innerHTML =
                         "<td class=\"align-middle text-center text-sm\">" +
                             "<h6 class=\"mb-0 text-sm\">" + "</h6>" + value.id + "</td>"+
                         "<td class=\"align-middle text-center text-sm\">" +
@@ -41,7 +45,11 @@ async function loadEquipments() {
                         "</td>"+
                         "<td class=\"align-middle text-center text-sm\">" +
                             "<span className=\"badge badge-sm bg-gradient-success\">" + value.available +" </span>" +
+                        "</td>"+
+                        "<td class=\"align-middle\">" +
+                            "<a onclick=\"refUpdateEquipment(this)\" class=\"text-secondary font-weight-bold text-xs\" data-toggle=\"tooltip\" data-original-title=\"Edit user\">Edit</a>" +
                         "</td>";
+
                 }
 
                 divTableEquipments.appendChild(docEquipmentsTable.body);
