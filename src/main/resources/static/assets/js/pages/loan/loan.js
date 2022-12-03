@@ -24,28 +24,45 @@ async function loadLoans() {
 
                     newRow.innerHTML =
                         "<td class=\"align-middle text-center text-sm\">" +
-                        "<h6 class=\"mb-0 text-sm\">" + "</h6>" + value.id + "</td>"+
-                        "<td class=\"align-middle text-center text-sm\">" +
-                        "<p class=\"text-xs font-weight-bold mb-0\">" + value.equipment.id + "</p>" +
+                            "<h6 class=\"mb-0 text-sm\">" + "</h6>" + value.status +
                         "</td>"+
                         "<td class=\"align-middle text-center text-sm\">" +
-                        "<p class=\"text-xs text-secondary mb-0\">" + value.equipment.name + "</p>" +
+                            "<h6 class=\"mb-0 text-sm\">" + "</h6>" + value.id +
                         "</td>"+
                         "<td class=\"align-middle text-center text-sm\">" +
-                        "<p class=\"text-xs font-weight-bold mb-0\">" + value.date + "</p>" +
+                            "<p class=\"text-xs font-weight-bold mb-0\">" + value.equipment.id + "</p>" +
                         "</td>"+
                         "<td class=\"align-middle text-center text-sm\">" +
-                        "<p class=\"text-xs font-weight-bold mb-0\">" + value.duedate + "</p>" +
+                            "<p class=\"text-xs text-secondary mb-0\">" + value.equipment.name + "</p>" +
+                        "</td>"+
+                        "<td class=\"align-middle text-center text-sm\">" +
+                            "<p class=\"text-xs text-secondary mb-0\">" + value.equipment.model + "</p>" +
+                        "</td>"+
+                        "<td class=\"align-middle text-center text-sm\">" +
+                            "<p class=\"text-xs font-weight-bold mb-0\">" + value.creationDate + "</p>" +
+                        "</td>"+
+                        "<td class=\"align-middle text-center text-sm\">" +
+                            "<p class=\"text-xs font-weight-bold mb-0\">" + value.dueDate + "</p>" +
+                        "</td>"+
+                        "<td class=\"align-middle\">" +
+                        "<a onclick=\"returnLoan(this)\" class=\"text-secondary font-weight-bold text-xs\" data-toggle=\"tooltip\" data-original-title=\"RETURN\">Return</a>" +
                         "</td>";
-                        /*"<td class=\"align-middle\">" +
-                        "<a onclick=\"refUpdateLoan(this)\" class=\"text-secondary font-weight-bold text-xs\" data-toggle=\"tooltip\" data-original-title=\"Edit user\">Edit</a>" +
-                        "</td>";*/
 
                 }
 
                 divTableLoans.appendChild(docLoansTable.body);
             }
         });
+}
+
+async function returnLoan(returnButton) {
+    let loanId = returnButton.closest('tr').getAttribute('id');
+
+    let loan = new Loan(loanId, null, null);
+
+    await putData(loanEndpoint, loan, () => {
+        window.location.href = loanIndexHtml;
+    })
 }
 
 window.addEventListener("load", loadLoans);

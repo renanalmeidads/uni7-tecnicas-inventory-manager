@@ -14,23 +14,14 @@ function load(){
 
             e.preventDefault();
 
-            let usuario = new Usuario(elements.namedItem('username').value, elements.namedItem('password').value);
-
-            console.log(usuario);
+            let usuario = new Usuario(elements.namedItem('username').value, null, elements.namedItem('password').value);
 
             await postData(loginEndpoint, usuario, async (response) => {
-                console.log(response);
-
                 if (response.ok) {
-                    console.log('Redirect');
-                    let jsonResponse = await response.json();
-                    //AuthProperties.setCookie(jsonResponse);
-                    console.log(jsonResponse);
                     window.location.href = dashboardIndex;
                 } else {
                     console.log('Usuário não encontrado');
                 }
-                //window.location.href = baseUrl;
             });
         })
     }

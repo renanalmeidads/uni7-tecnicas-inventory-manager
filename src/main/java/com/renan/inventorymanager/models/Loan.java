@@ -13,6 +13,8 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private LoanStatus status;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -63,5 +65,17 @@ public class Loan {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setActiveStatus() {
+        this.status = LoanStatus.ACTIVE;
+    }
+
+    public void setInactiveStatus() {
+        this.status = LoanStatus.INACTIVE;
     }
 }

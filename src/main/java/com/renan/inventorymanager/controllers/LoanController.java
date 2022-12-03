@@ -2,6 +2,7 @@ package com.renan.inventorymanager.controllers;
 
 import com.renan.inventorymanager.models.Equipment;
 import com.renan.inventorymanager.models.Loan;
+import com.renan.inventorymanager.models.LoanStatus;
 import com.renan.inventorymanager.models.auth.User;
 import com.renan.inventorymanager.repositories.IEquipmentRepository;
 import com.renan.inventorymanager.repositories.ILoanRepository;
@@ -52,6 +53,7 @@ public class LoanController {
             loan.setUser(user.get());
             loan.setEquipment(equipment.get());
             loan.setCreationDate(new Date());
+            loan.setActiveStatus();
 
             loanRepository.save(loan);
 
@@ -68,13 +70,14 @@ public class LoanController {
         {
             if(loanRepository.existsById(loan.getId()))
             {
-                Optional<Loan> old = loanRepository.findById(loan.getId());
+                Optional<Loan> existentLoan = loanRepository.findById(loan.getId());
 
-                //manufacturerRepository.save(equipment.getManufacturer());
+                if(existentLoan.isPresent()) {
+                    loanRepository.updateLoanSetStatusForId(loan.getId(), LoanStatus.INACTIVE);
+                    equipmentRepository.updateEquipmentSetAvailableForId(existentLoan.get().getEquipment().getId(), true);
 
-                loanRepository.save(loan);
-
-                return new ResponseEntity(HttpStatus.CREATED);
+                    return new ResponseEntity(HttpStatus.CREATED);
+                }
             }
 
             return new ResponseEntity(HttpStatus.NOT_FOUND);

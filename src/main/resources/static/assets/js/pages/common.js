@@ -1,19 +1,23 @@
 const baseUrl = 'http://localhost:8080';
 
 const loginEndpoint = baseUrl + '/api/auth/signin';
+const registerEndpoint = baseUrl + '/api/auth/signup';
+const logoutEndpoint = baseUrl + '/api/auth/signout';
 const loginPage = baseUrl + '/login/sign-in.html'
 const dashboardIndex = baseUrl + '/dashboard/index.html';
 const equipmentTableHtml = baseUrl + '/equipment/equipment_table.html';
-const equipmentRowHtml = baseUrl + '/equipment/equipment_row.html';
 const equipmentUpdateHtml = baseUrl + '/equipment/equipment_update.html';
 const equipmentGetAll = baseUrl + '/api/equipment/all';
 const equipmentEndpoint = baseUrl + '/api/equipment';
 const loanTableHtml = baseUrl + '/loan/loan_table.html';
+const loanIndexHtml = baseUrl + '/loan/index.html';
 const loanGetAll = baseUrl + '/api/loan/all';
+const loanEndpoint = baseUrl + '/api/loan';
 
 class Usuario
 {
-    constructor(username, password) {
+    constructor(username, email, password) {
+        this.email = email;
         this.username = username;
         this.password = password;
     }
@@ -34,6 +38,15 @@ class Manufacturer
 {
     constructor(name) {
         this.name = name;
+    }
+}
+
+class Loan
+{
+    constructor(id, equipment, dueDate) {
+        this.id = id;
+        this.equipment = equipment;
+        this.dueDate = dueDate;
     }
 }
 
