@@ -8,6 +8,8 @@ const equipmentRowHtml = baseUrl + '/equipment/equipment_row.html';
 const equipmentUpdateHtml = baseUrl + '/equipment/equipment_update.html';
 const equipmentGetAll = baseUrl + '/api/equipment/all';
 const equipmentEndpoint = baseUrl + '/api/equipment';
+const loanTableHtml = baseUrl + '/loan/loan_table.html';
+const loanGetAll = baseUrl + '/api/loan/all';
 
 class Usuario
 {
